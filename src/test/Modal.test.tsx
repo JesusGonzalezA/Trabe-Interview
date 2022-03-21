@@ -1,33 +1,33 @@
-import '@testing-library/jest-dom'
-import { shallow, mount } from 'enzyme'
+import {render, screen} from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { Modal } from '../components/modal'
 import { IModalProps } from '../components/modal/IModalProps'
 
-const setShowModal = jest.fn()
+const onClose = jest.fn()
+
 const defaultProps : IModalProps = {
-    setShowModal,
+    showModal: true,
+    onClose: onClose,
     title: '',
     footer: ''
 }
 
 describe('Testing modal component', () => {
     test('modal should not be visible when close button is clicked', () => {
-        const wrapper = shallow(<Modal showModal={true} {...defaultProps } />)
-        const closeButton = wrapper.find('.modal__header__close')
+        render(<Modal {...defaultProps } />)
+        const closeButton = screen.getByTestId('modal__header__close')
 
-        closeButton.simulate('click')
+        userEvent.click(closeButton)
 
-        expect( setShowModal ).toHaveBeenLastCalledWith(false)
+        expect( onClose ).toHaveBeenCalled()
     })
 
     test('modal should not be visible when clicking outside', () => {
-        const wrapper = mount(<Modal showModal={true} {...defaultProps } />)
-        const background = wrapper.find('.modal__background')
+        render(<Modal {...defaultProps } />)
+        const background = screen.getByTestId('modal__background')
 
-        background.simulate('click', {
-            target: background.getDOMNode()
-        })
+        userEvent.click(background)
 
-        expect( setShowModal ).toHaveBeenCalledWith(false)
+        expect( onClose ).toHaveBeenCalled()
     })
 })

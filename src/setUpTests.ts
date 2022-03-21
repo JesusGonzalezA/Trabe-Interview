@@ -1,4 +1,3 @@
-import Enzyme from 'enzyme'
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17'
+import {configure} from '@testing-library/dom'
 
-Enzyme.configure({ adapter: new Adapter() })
+configure({ testIdAttribute: 'id' })
