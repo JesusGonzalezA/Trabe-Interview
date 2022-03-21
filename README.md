@@ -27,21 +27,17 @@ Asked features:
 
 ? = optional
 
-* **showModal?**: boolean
-* **setShowModal**: Dispatch<SetStateAction<boolean>>
-* **CloseIcon?**: ComponentType
+* **showModal**: boolean
+* **CloseIcon?**: any
 * **title**: string
-* **Body?**: ComponentType
 * **footer**: string
 * **rounded?**: boolean
 
 ### Explanation
 
-* **showModal?**: state of the modal. Opened if true
-* **setShowModal**: function to controll the state of the modal
-* **CloseIcon?**: component used to customize the close button
+* **showModal**: state of the modal. Opened if true
+* **CloseIcon?**: component used to customize the close element
 * **title**: title of the modal
-* **Body?**: body of the modal. You can render whatever you want
 * **footer**: footer of the modal
 * **rounded?**: if true, the modal border is rounded, if not, squared
 
