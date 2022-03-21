@@ -33,16 +33,15 @@ const Modal : FunctionComponent<IModalProps>
                     <div className={`modal__container ${rounded? 'modal__rounded' : ''}`}>
                         <div className='modal__header'>
                             <p>{ title }</p>
-                            <button onClick={handleOnClose} className='modal__header__close'>
-                                {
-                                    cloneElement(CloseIcon, {
-                                        onClick: () => {
-                                            CloseIcon.props.onClick && CloseIcon.props.onClick()
-                                            handleOnClose()
-                                        }
-                                    })
-                                }
-                            </button>
+                            {
+                                cloneElement(CloseIcon, {
+                                    onClick: () => {
+                                        CloseIcon.props.onClick && CloseIcon.props.onClick()
+                                        handleOnClose()
+                                    },
+                                    className: 'modal__header__close' 
+                                })
+                            }
                         </div>
                         <hr/>
                         <div className='modal__body'>

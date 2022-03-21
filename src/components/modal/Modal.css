@@ -33,6 +33,11 @@
 }
 
 .modal__header__close {
+    background-color: red;
+    color: white;
+}
+.modal__header__close:hover {
+    cursor: pointer;
 }
 
 .modal__body {
