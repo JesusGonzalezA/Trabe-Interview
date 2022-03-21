@@ -1,6 +1,6 @@
 # Trabe interview
 
-## Instructions
+## Instructions
 
 ### Execute the application
 ```bash
