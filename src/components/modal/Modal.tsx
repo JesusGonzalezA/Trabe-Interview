@@ -29,9 +29,9 @@ const Modal : FunctionComponent<IModalProps>
         {
             (showModal) 
             ? (
-                <div id='modal__background' ref={modalRef} onClick={handleOnClick}>
-                    <div id={`modal__container ${rounded? 'modal__rounded' : ''}`}>
-                        <div id='modal__header'>
+                <div className='modal__background' ref={modalRef} onClick={handleOnClick} id='modal__background'>
+                    <div className={`modal__container ${rounded? 'modal__rounded' : ''}`}>
+                        <div className='modal__header'>
                             <p>{ title }</p>
                             {
                                 cloneElement(CloseIcon, {
@@ -39,17 +39,18 @@ const Modal : FunctionComponent<IModalProps>
                                         CloseIcon.props.onClick && CloseIcon.props.onClick()
                                         handleOnClose()
                                     },
-                                    id: 'modal__header__close' 
+                                    className: 'modal__header__close',
+                                    id: 'modal__header__close'
                                 })
                             }
                         </div>
                         <hr/>
-                        <div id='modal__body'>
+                        <div className='modal__body'>
                             {
                                 children
                             }
                         </div>
-                        <div id='modal__footer'>
+                        <div className='modal__footer'>
                             { footer }
                         </div>
                     </div>
