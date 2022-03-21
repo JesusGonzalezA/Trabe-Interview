@@ -1,22 +1,22 @@
-import { FunctionComponent, useRef } from 'react'
+import { cloneElement, FunctionComponent, useRef } from 'react'
 import { IModalProps } from './IModalProps'
 import DefaultCloseIcon from './DefaultCloseIcon'
 import './Modal.css'
 
 const Modal : FunctionComponent<IModalProps> 
 = ({
-    setShowModal, 
     showModal,
-    CloseIcon,
+    onClose,
+    CloseIcon = <DefaultCloseIcon />,
     title,
-    Body,
     footer,
-    rounded
+    rounded,
+    children
 }) => {
     const modalRef = useRef<HTMLDivElement>(null)
 
     const handleOnClose = () => {
-        setShowModal(false)
+        onClose()
     }
 
     const handleOnClick = (e : any) => {
@@ -35,14 +35,19 @@ const Modal : FunctionComponent<IModalProps>
                             <p>{ title }</p>
                             <button onClick={handleOnClose} className='modal__header__close'>
                                 {
-                                    CloseIcon ? <CloseIcon /> : <DefaultCloseIcon />
+                                    cloneElement(CloseIcon, {
+                                        onClick: () => {
+                                            CloseIcon.props.onClick && CloseIcon.props.onClick()
+                                            handleOnClose()
+                                        }
+                                    })
                                 }
                             </button>
                         </div>
                         <hr/>
                         <div className='modal__body'>
                             {
-                                Body ? <Body /> : null
+                                children
                             }
                         </div>
                         <div className='modal__footer'>

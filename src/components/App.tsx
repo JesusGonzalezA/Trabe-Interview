@@ -1,24 +1,12 @@
 import { useState } from 'react'
 import { Modal } from './modal'
-
-const Body = ({setShowModal} : any) => {
-  return (
-    <>
-      <p>
-        In order to close the modal, you can click outside of it. Also, you can click the button
-        on the top right corner or click this button below
-      </p>
-      <button onClick={() => setShowModal(false)}>Click me!</button>
-    </>
-  )
-}
+import CustomCloseIcon from './modal/CustomCloseIcon'
 
 const App = () => {
   const [showModal, setShowModal] = useState(false)
 
-  const handleShowModal = () => {
-    setShowModal(true)
-  }
+  const handleOpen = () => { setShowModal(true) }
+  const handleClose = () => { setShowModal(false) }
 
   return (
     <>
@@ -27,16 +15,22 @@ const App = () => {
 
       <hr />
 
-      <button onClick={handleShowModal}>Show modal</button>
+      <button onClick={handleOpen}>Show modal</button>
 
-      <Modal 
-        showModal={showModal} 
-        setShowModal={setShowModal}
+      <Modal
+        showModal={showModal}
+        onClose={handleClose}
         title='Hello Trabe'
-        Body={() => (<Body setShowModal={setShowModal} />)}
+        CloseIcon={<CustomCloseIcon />}
         footer='Developed by Jesús González Álvarez'
         rounded
-      />
+      >
+        <p>
+        In order to close the modal, you can click outside of it. Also, you can click the button
+        on the top right corner or click this button below
+        </p>
+        <button onClick={handleClose}>Click me!</button>
+      </Modal>
     </>
   )
 }

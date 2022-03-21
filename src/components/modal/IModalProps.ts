@@ -1,11 +1,9 @@
-import { Dispatch, SetStateAction, ComponentType } from 'react'
 
 export interface IModalProps {
-    showModal?: boolean,
-    setShowModal: Dispatch<SetStateAction<boolean>>,
-    CloseIcon?: ComponentType,
+    showModal: boolean,
+    onClose: Function,
+    CloseIcon?: any,
     title: string,
-    Body?: ComponentType,
     footer: string,
     rounded?: boolean
 }
